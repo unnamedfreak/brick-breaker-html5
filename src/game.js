@@ -22,6 +22,11 @@ export default class Game {
 
     update(deltaTime) {
         this.gameObjects.forEach(obj => obj.update(deltaTime));
+
+        this.gameObjects = this.gameObjects.filter(obj => {
+            // console.log('Brick Deleted');
+            return !obj.markedForDeletion;
+        })
     }
 
     draw(ctx) {
