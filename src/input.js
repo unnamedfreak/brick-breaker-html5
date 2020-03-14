@@ -13,7 +13,9 @@ export default class InputeHandler {
                     game.togglePause();
                     break;
                 case 32:
+                    if(game.gamestate == 1) return;
                     game.start();
+                    break;
             }
         })
 
