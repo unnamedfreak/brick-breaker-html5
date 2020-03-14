@@ -13,7 +13,12 @@ export default class InputeHandler {
                     game.togglePause();
                     break;
                 case 32:
-                    if(game.gamestate == 1) return;
+                    if(game.gamestate == 5) {
+                        return;
+                    } else if(game.gamestate == 0 || game.gamestate == 1){
+                        game.togglePause();
+                        return;
+                    }
                     game.start();
                     break;
             }

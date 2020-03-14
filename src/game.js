@@ -1,7 +1,9 @@
 import Paddle from './paddle.js';
 import Ball from './ball.js';
 import InputHandler from './input.js';
-import { buildLevel, level1, level2 } from './levels.js'; 
+import { buildLevel } from './levelBuilder.js'; 
+
+import lvlList from '../assets/levels.js';
 
 const GAMESTATE = {
     PAUSED: 0,
@@ -21,30 +23,29 @@ export default class Game {
         this.bricks = [];
         this.paddle = new Paddle(this);
         this.ball = new Ball(this);
-        this.levels = [level1, level2];
+        this.levels = Object.values(lvlList);
         this.currLevel = 0;
         this.lives = 2;
         new InputHandler(this, this.paddle);
     }
 
     start() {
-        console.log(`Level ${this.currLevel+1}`)
         this.ball.reset();
         this.paddle.reset();
         if(
-            (this.gamestate !== GAMESTATE.MENU &&
+            this.gamestate !== GAMESTATE.MENU &&
              this.gamestate !== GAMESTATE.NEXTLEVEL
-        )) {console.log("owo"); return;}
-        // if(this.gamestate === GAMESTATE.RUNNING) {
-        //     console.log("owo");
-        //     return; 
-        // }
+        ) return;
         this.bricks = buildLevel(this, this.levels[this.currLevel]);
         this.gameObjects = [this.paddle, this.ball];
         this.gamestate = GAMESTATE.RUNNING;
     }
 
     update(deltaTime) {
+        let level = document.getElementById("level");
+        let lives = document.getElementById("lives");
+        level.innerText = this.currLevel+1;
+        lives.innerHTML = this.lives;
         if(
             this.gamestate === GAMESTATE.PAUSED || 
             this.gamestate === GAMESTATE.MENU ||
@@ -67,10 +68,6 @@ export default class Game {
                 this.ball.reset();
             }
         }
-
-        console.log(this.bricks.length);
-        console.log(this.currLevel, this.levels.length-1);
-        console.log(this.gamestate);
 
         if(this.bricks.length === 0) {
             if(this.currLevel == this.levels.length-1) {

@@ -1,22 +1,19 @@
 <html>
 <head>
     <title>Brick Breaker</title>
-    <style>
-        #gameScreen {
-            border: 1px solid black;
-        }
-        img {
-            display: none;
-        }
-    </style>
-
+    <link href="styles.css" rel="stylesheet">
 </head>
 
 <body>
+    <h1>Brick Breaker</h1>
     <img id="imgBall" src="./assets/images/ball.png">
     <img id="imgBrick" src="./assets/images/brick.png">
-
     <canvas id="gameScreen" width="800px" height="600px"></canvas>
+
+    <div class="stats">
+        <div class="data">Level: <span id="level"></span></div>
+        <div class="data">Lives: <span id="lives"></span></div>
+    </div>
 
     <script src="./src/index.js" type="module"></script>
 </body>

@@ -1,0 +1,30 @@
+:root {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+#gameScreen {
+    border: 1px solid black;
+    margin: 0 22.5%;
+}
+
+.stats {
+    display: flex;
+    flex-direction: row;
+    font-size: 1.5rem;
+    justify-content: center;
+}
+
+.data {
+    margin: 0 10%;
+}
+
+img {
+    display: none;
+}
+
